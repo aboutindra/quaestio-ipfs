@@ -9,6 +9,10 @@ server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
 
+server.get('/', function (req, res) {
+    res.send({message: "Server running properly"});
+});
+
 server.post('/text', async function (req, res) {
     const text = req.body.text;
     const {path} = await uploadText(text)
