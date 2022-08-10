@@ -1,0 +1,10 @@
+{
+  "name": "quaestio-ipfs",
+  "version": "1.0.0",
+  "module": "ES2020",
+  "target": "ES2015",
+  "dependencies": {
+    "ipfs-http-client": "55.0.0",
+    "restify": "^8.6.1"
+  }
+}
