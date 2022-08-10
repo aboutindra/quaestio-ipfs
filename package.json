@@ -1,8 +1,9 @@
 {
   "name": "quaestio-ipfs",
   "version": "1.0.0",
-  "module": "ES2020",
-  "target": "ES2015",
+  "scripts": {
+    "start": "node index"
+  },
   "dependencies": {
     "ipfs-http-client": "55.0.0",
     "restify": "^8.6.1"
