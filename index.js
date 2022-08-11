@@ -1,5 +1,6 @@
 const restify = require('restify');
-const { uploadText } = require('./ipfs')
+const { uploadText } = require('./ipfs');
+const corsMiddleware = require('restify-cors-middleware');
 const server = restify.createServer({
     name: 'quaestio-ipfs',
     version: '1.0.0'
@@ -8,6 +9,18 @@ const server = restify.createServer({
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
+
+const corsConfig = corsMiddleware({
+    preflightMaxAge: 5,
+    origins: ['*'],
+    // ['*'] -> to expose all header, any type header will be allow to access
+    // X-Requested-With,content-type,GET, POST, PUT, PATCH, DELETE, OPTIONS -> header type
+    allowHeaders: ['Authorization'],
+    exposeHeaders: ['Authorization']
+});
+
+this.server.pre(corsConfig.preflight);
+this.server.use(corsConfig.actual);
 
 server.get('/', function (req, res) {
     res.send({message: "Server running properly"});
