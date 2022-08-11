@@ -15,8 +15,8 @@ server.get('/', function (req, res) {
 
 server.post('/text', async function (req, res) {
     const text = req.body.text;
-    const {path} = await uploadText(text)
-    res.send({path});
+    const result = await uploadText(text)
+    res.json(result);
 });
 
 server.listen(process.env.PORT || 80, function () {
